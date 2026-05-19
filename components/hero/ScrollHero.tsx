@@ -30,8 +30,12 @@ export default function ScrollHero() {
     ).matches;
     const memory = (navigator as NavigatorWithMemory).deviceMemory;
     const constrainedMemory = typeof memory === "number" && memory <= 3;
+    const constrainedCpu =
+      typeof navigator.hardwareConcurrency === "number" &&
+      navigator.hardwareConcurrency <= 4;
 
-    const shouldUseFallback = prefersReducedMotion || constrainedMemory;
+    const shouldUseFallback =
+      prefersReducedMotion || constrainedMemory || constrainedCpu;
 
     setFallbackMode(shouldUseFallback);
 
@@ -77,16 +81,37 @@ export default function ScrollHero() {
       const smoothFactor = 0.18;
       const holdRatio = 1 / 6;
       const holdStart = 1 - holdRatio;
+      const targetFrameInterval = 1000 / 24;
+      let lastSeekTimestamp = 0;
+      let pendingSeekFrames = 0;
 
-      const tick = () => {
+      const tick = (timestamp: number) => {
         state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
 
-        if (video.readyState >= 2) {
+        if (
+          video.readyState >= 2 &&
+          timestamp - lastSeekTimestamp >= targetFrameInterval &&
+          !video.seeking
+        ) {
           const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
 
-          if (Math.abs(video.currentTime - nextTime) > 0.008) {
+          if (Math.abs(video.currentTime - nextTime) > 0.016) {
             video.currentTime = nextTime;
+            lastSeekTimestamp = timestamp;
           }
+        }
+
+        if (video.seeking && Math.abs(video.currentTime - state.targetTime) > 0.08) {
+          pendingSeekFrames += 1;
+        } else {
+          pendingSeekFrames = Math.max(0, pendingSeekFrames - 2);
+        }
+
+        if (pendingSeekFrames > 80) {
+          scrubTrigger?.kill();
+          setFallbackMode(true);
+          autoplayVideo();
+          return;
         }
 
         animationFrameId = window.requestAnimationFrame(tick);
@@ -168,7 +193,7 @@ export default function ScrollHero() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.35)_0%,rgba(18,11,8,0.08)_35%,rgba(18,11,8,0.78)_100%)]" />
         <div className="grain-overlay" />
 
-        <HeroOverlayText progress={fallbackMode ? 0.08 : progress} isReady={isReady} />
+        <HeroOverlayText progress={fallbackMode ? 0 : progress} isReady={isReady} />
       </div>
     </section>
   );

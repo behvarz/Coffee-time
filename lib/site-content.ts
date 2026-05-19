@@ -47,6 +47,7 @@ type SiteContent = {
   hero: {
     moments: HeroMoment[];
     exploreCollection: string;
+    scrollHint: string;
   };
   collection: {
     eyebrow: string;
@@ -116,6 +117,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         { text: "Սուրճ, Որը Ստեղծված Է Կիսվելու Համար", start: 0.85, end: 1 },
       ],
       exploreCollection: "Բացահայտիր Տեսականին",
+      scrollHint: "Սքրոլ արա՝ ռիտուալը բացահայտելու համար",
     },
     collection: {
       eyebrow: "Տեսականի",
@@ -256,6 +258,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         { text: "Coffee Meant To Be Shared", start: 0.85, end: 1 },
       ],
       exploreCollection: "Explore the Collection",
+      scrollHint: "Scroll to begin the ritual",
     },
     collection: {
       eyebrow: "Collection",
@@ -396,6 +399,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         { text: "Кофе, Которым Хочется Делиться", start: 0.85, end: 1 },
       ],
       exploreCollection: "Открой Коллекцию",
+      scrollHint: "Прокрутите, чтобы начать ритуал",
     },
     collection: {
       eyebrow: "Коллекция",
