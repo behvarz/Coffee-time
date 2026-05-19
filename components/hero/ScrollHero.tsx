@@ -5,8 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroOverlayText from "./HeroOverlayText";
 
-type NavigatorWithMemory = Navigator & { deviceMemory?: number };
-
 export default function ScrollHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -28,17 +26,7 @@ export default function ScrollHero() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    const smallViewport = window.innerWidth < 1024;
-    const memory = (navigator as NavigatorWithMemory).deviceMemory;
-    const constrainedMemory = typeof memory === "number" && memory <= 3;
-    const constrainedCpu =
-      typeof navigator.hardwareConcurrency === "number" &&
-      navigator.hardwareConcurrency <= 4;
-    const mobileLike = coarsePointer || smallViewport;
-
-    const shouldUseFallback =
-      prefersReducedMotion || constrainedMemory || constrainedCpu || mobileLike;
+    const shouldUseFallback = prefersReducedMotion;
 
     setFallbackMode(shouldUseFallback);
 
@@ -213,9 +201,7 @@ export default function ScrollHero() {
           src="/hero.mp4"
           muted
           playsInline
-          autoPlay
-          loop
-          preload="auto"
+          preload="metadata"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.35)_0%,rgba(18,11,8,0.08)_35%,rgba(18,11,8,0.78)_100%)]" />
