@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/site-content";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -9,8 +10,15 @@ type ProductCardProps = {
   index: number;
 };
 
+const productVisuals = [
+  { image: "/images/product-signature.jpg", price: "$ 18.90" },
+  { image: "/images/product-daily.jpg", price: "$ 16.50" },
+  { image: "/images/product-midnight.jpg", price: "$ 21.40" },
+];
+
 export default function ProductCard({ product, index }: ProductCardProps) {
   const { content } = useLanguage();
+  const visual = productVisuals[index % productVisuals.length];
 
   return (
     <motion.article
@@ -22,7 +30,17 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       className="group rounded-3xl border border-[#E0A85A]/18 bg-[linear-gradient(165deg,rgba(42,24,16,0.88),rgba(18,11,8,0.95))] p-6 md:p-8"
     >
       <div className="relative overflow-hidden rounded-2xl border border-[#E0A85A]/22 bg-[#2A1810]/50 p-5">
-        <div className="aspect-[4/3] rounded-xl bg-[radial-gradient(circle_at_20%_20%,rgba(224,168,90,0.38),rgba(92,52,29,0.24)_40%,rgba(18,11,8,0.9)_100%)] transition-transform duration-500 group-hover:scale-105" />
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+          <Image
+            src={visual.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            className="object-cover opacity-65 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-72"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(200,138,61,0.28)_0%,rgba(42,24,16,0.2)_45%,rgba(18,11,8,0.86)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(224,168,90,0.35),transparent_45%)]" />
+        </div>
         <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(224,168,90,0.14)]" />
       </div>
 
@@ -40,7 +58,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <span className="text-sm tracking-[0.2em] text-[#F4E7D3]/75 uppercase">
           {content.actions.from}
         </span>
-        <span className="font-display text-3xl text-[#E0A85A]">{product.price}</span>
+        <span className="font-display text-3xl text-[#E0A85A]">{visual.price}</span>
       </div>
     </motion.article>
   );

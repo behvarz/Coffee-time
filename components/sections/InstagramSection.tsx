@@ -1,15 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/sections/SectionHeading";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+
+const instagramImages = [
+  "/images/ig-1.jpg",
+  "/images/ig-2.jpg",
+  "/images/ig-3.jpg",
+  "/images/ig-4.jpg",
+  "/images/ig-5.jpg",
+  "/images/ig-6.jpg",
+];
 
 export default function InstagramSection() {
   const { content } = useLanguage();
 
   return (
     <section className="relative py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-x-0 top-10 mx-auto h-[320px] max-w-[1320px] opacity-15">
+          <Image
+            src="/images/ig-4.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover blur-[2px]"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.2)_0%,rgba(18,11,8,0.95)_85%)]" />
+        </div>
+      </div>
+
       <div className="mx-auto w-full max-w-[1320px] px-6 md:px-10 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -39,9 +62,18 @@ export default function InstagramSection() {
               whileHover={{ y: -4, scale: 1.01 }}
               className="group relative overflow-hidden rounded-2xl border border-[#E0A85A]/20"
             >
-              <div
-                className={`h-44 bg-gradient-to-br ${shot.toneClassName} transition-transform duration-500 group-hover:scale-105 md:h-56`}
-              />
+              <div className="relative h-44 md:h-56">
+                <Image
+                  src={instagramImages[index % instagramImages.length]}
+                  alt={shot.title}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  className="object-cover opacity-58 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-68"
+                />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${shot.toneClassName} opacity-55`}
+                />
+              </div>
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(18,11,8,0.92)_100%)]" />
               <div className="absolute right-4 bottom-4 left-4">
                 <h3 className="font-display text-2xl text-[#FFF7ED]">{shot.title}</h3>

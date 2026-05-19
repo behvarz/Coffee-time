@@ -75,8 +75,11 @@ export default function HeroOverlayText({
         </div>
 
         <div
-          className="absolute bottom-8 flex flex-col items-center gap-2 md:bottom-10"
-          style={{ opacity: isReady ? hintOpacity : 0 }}
+          className="absolute flex flex-col items-center gap-2 md:bottom-10"
+          style={{
+            opacity: isReady ? hintOpacity : 0,
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 5.5rem)",
+          }}
         >
           <span className="text-[11px] tracking-[0.18em] text-[#F4E7D3]/86 uppercase">
             {content.hero.scrollHint}

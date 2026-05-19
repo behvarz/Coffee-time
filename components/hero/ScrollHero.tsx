@@ -28,14 +28,17 @@ export default function ScrollHero() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const smallViewport = window.innerWidth < 1024;
     const memory = (navigator as NavigatorWithMemory).deviceMemory;
     const constrainedMemory = typeof memory === "number" && memory <= 3;
     const constrainedCpu =
       typeof navigator.hardwareConcurrency === "number" &&
       navigator.hardwareConcurrency <= 4;
+    const mobileLike = coarsePointer || smallViewport;
 
     const shouldUseFallback =
-      prefersReducedMotion || constrainedMemory || constrainedCpu;
+      prefersReducedMotion || constrainedMemory || constrainedCpu || mobileLike;
 
     setFallbackMode(shouldUseFallback);
 
