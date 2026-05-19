@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "COFFEE TIME YEREVAN",
+  title: "COFFEE TIME",
   description:
     "Premium roasted coffee, espresso, tools, and artisan ritual experiences in Yerevan.",
 };
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="hy"
+      lang="am"
       className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[var(--bg-deep)] text-[var(--text-primary)] font-body">

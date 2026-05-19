@@ -22,6 +22,11 @@ type LanguageContextValue = {
 };
 
 const STORAGE_KEY = "coffee-time-yerevan-language";
+const htmlLangByLanguage: Record<LanguageCode, string> = {
+  am: "am",
+  en: "en",
+  ru: "ru",
+};
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
@@ -45,7 +50,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, language);
-    document.documentElement.lang = language;
+    document.documentElement.lang = htmlLangByLanguage[language];
   }, [language]);
 
   const setLanguage = useCallback((nextLanguage: LanguageCode) => {

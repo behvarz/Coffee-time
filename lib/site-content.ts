@@ -1,8 +1,8 @@
-export const languageCodes = ["hy", "en", "ru"] as const;
+export const languageCodes = ["am", "en", "ru"] as const;
 
 export type LanguageCode = (typeof languageCodes)[number];
 
-export const defaultLanguage: LanguageCode = "hy";
+export const defaultLanguage: LanguageCode = "am";
 
 export type HeroMoment = {
   text: string;
@@ -29,7 +29,6 @@ export type InstagramShot = {
 };
 
 type SiteContent = {
-  languageLabel: string;
   nav: {
     home: string;
     collection: string;
@@ -41,6 +40,9 @@ type SiteContent = {
     enter: string;
     followRitual: string;
     from: string;
+    menu: string;
+    language: string;
+    close: string;
   };
   hero: {
     moments: HeroMoment[];
@@ -90,8 +92,7 @@ const toneClasses = [
 ];
 
 export const siteContent: Record<LanguageCode, SiteContent> = {
-  hy: {
-    languageLabel: "Հայ",
+  am: {
     nav: {
       home: "Գլխավոր",
       collection: "Տեսականի",
@@ -99,10 +100,13 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       contact: "Կոնտակտ",
     },
     actions: {
-      orderCoffee: "Պատվիրել սուրճ",
+      orderCoffee: "Պատվիրել",
       enter: "Մուտք",
       followRitual: "Հետևել ռիտուալին",
       from: "Սկսած",
+      menu: "Մենյու",
+      language: "Լեզու",
+      close: "Փակել",
     },
     hero: {
       moments: [
@@ -124,21 +128,21 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
           description:
             "Խորը կրեմա և մուգ կակաոյի մարմին՝ նպատակով սկսվող առավոտների համար։",
           price: "$ --",
-          tastingNote: "Կակաո • Սև բալ • Մելաս",
+          tastingNote: "Կակաո / Սև բալ / Մելաս",
         },
         {
           name: "Daily Ritual Roast",
           description:
             "Տաք և հավասարակշռված տապակում՝ կարամելային խորությամբ և մետաքսյա ավարտով։",
           price: "$ --",
-          tastingNote: "Տոֆֆի • Պնդուկ • Կարմիր խնձոր",
+          tastingNote: "Տոֆֆի / Պնդուկ / Կարմիր խնձոր",
         },
         {
           name: "Midnight Arabica",
           description:
             "Թավշյա հյուսվածք՝ ծաղկային շեշտով և նուրբ համեմունքային քաղցրությամբ։",
           price: "$ --",
-          tastingNote: "Հասմիկ • Սալոր • Համեմված մեղր",
+          tastingNote: "Հասմիկ / Սալոր / Համեմված մեղր",
         },
       ],
     },
@@ -150,7 +154,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       location: "Երևան, Հայաստան",
       paragraphs: [
         "Երևանում սուրճը երբեք չի շտապում։ Այն սկսվում է արևածագից առաջ բարձրացող բույրով, հանգիստ կրակով և չափված լցմամբ, որը առօրյան դարձնում է ռիտուալ։",
-        "COFFEE TIME YEREVAN-ում յուրաքանչյուր հատիկ ընտրվում է բնավորության համար, տապակվում է խորության համար և պատրաստվում է այնպիսի ջերմության համար, որը մնում է վերջին կումից հետո էլ։",
+        "COFFEE TIME-ում յուրաքանչյուր հատիկ ընտրվում է բնավորության համար, տապակվում է խորության համար և պատրաստվում է այնպիսի ջերմության համար, որը մնում է վերջին կումից հետո էլ։",
         "Ընդհանուր սեղաններից մինչև տան դանդաղ առավոտներ՝ մեր արհեստը հարգում է քաղաքի սուրճի մշակույթը՝ նուրբ, առատաձեռն և մարդկանց միմյանց մոտեցնող։",
       ],
     },
@@ -182,7 +186,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     },
     instagram: {
       eyebrow: "Instagram Ցուցադրություն",
-      title: "COFFEE TIME YEREVAN-ի Տեսողական Ռիտուալներ",
+      title: "COFFEE TIME-ի Տեսողական Ռիտուալներ",
       description:
         "Ընտրված վիզուալ մթնոլորտ՝ ներշնչված մեր ջերմ սուրճի մշակույթով և արհեստավոր պահերով։",
       shots: [
@@ -229,7 +233,6 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     },
   },
   en: {
-    languageLabel: "EN",
     nav: {
       home: "Home",
       collection: "Collection",
@@ -237,10 +240,13 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       contact: "Contact",
     },
     actions: {
-      orderCoffee: "Order Coffee",
+      orderCoffee: "Order Now",
       enter: "Enter",
       followRitual: "Follow The Ritual",
       from: "From",
+      menu: "Menu",
+      language: "Language",
+      close: "Close",
     },
     hero: {
       moments: [
@@ -262,21 +268,21 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
           description:
             "Bold crema and dark-cacao body shaped for mornings that begin with intention.",
           price: "$ --",
-          tastingNote: "Cacao • Black Cherry • Molasses",
+          tastingNote: "Cacao / Black Cherry / Molasses",
         },
         {
           name: "Daily Ritual Roast",
           description:
             "A warm, balanced roast with caramel depth and silky finish for everyday ceremony.",
           price: "$ --",
-          tastingNote: "Toffee • Hazelnut • Red Apple",
+          tastingNote: "Toffee / Hazelnut / Red Apple",
         },
         {
           name: "Midnight Arabica",
           description:
             "Velvet texture with floral lift and spiced sweetness made for long evening conversations.",
           price: "$ --",
-          tastingNote: "Jasmine • Plum • Spiced Honey",
+          tastingNote: "Jasmine / Plum / Spiced Honey",
         },
       ],
     },
@@ -288,8 +294,8 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       location: "Yerevan, Armenia",
       paragraphs: [
         "In Yerevan, coffee is never rushed. It begins with aroma rising before sunrise, a quiet flame, and a measured pour that turns routine into ritual.",
-        "At COFFEE TIME YEREVAN, every bean is selected for character, roasted for depth, and brewed for warmth that lingers long after the final sip.",
-        "From shared tables to slow mornings at home, our craft honors the city’s coffee culture: elegant, generous, and made to bring people closer.",
+        "At COFFEE TIME, every bean is selected for character, roasted for depth, and brewed for warmth that lingers long after the final sip.",
+        "From shared tables to slow mornings at home, our craft honors the city's coffee culture: elegant, generous, and made to bring people closer.",
       ],
     },
     experience: {
@@ -320,7 +326,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     },
     instagram: {
       eyebrow: "Instagram Showcase",
-      title: "Visual Rituals From COFFEE TIME YEREVAN",
+      title: "Visual Rituals From COFFEE TIME",
       description:
         "A curated feed atmosphere inspired by our warm coffee culture and artisan moments.",
       shots: [
@@ -367,7 +373,6 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     },
   },
   ru: {
-    languageLabel: "RU",
     nav: {
       home: "Главная",
       collection: "Коллекция",
@@ -375,10 +380,13 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       contact: "Контакт",
     },
     actions: {
-      orderCoffee: "Заказать кофе",
+      orderCoffee: "Заказать",
       enter: "Войти",
       followRitual: "Следовать ритуалу",
       from: "От",
+      menu: "Меню",
+      language: "Язык",
+      close: "Закрыть",
     },
     hero: {
       moments: [
@@ -398,23 +406,23 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         {
           name: "Signature Espresso Blend",
           description:
-            "Плотная крема и тёмно-какао профиль для осознанного начала утра.",
+            "Плотная крема и темно-какао профиль для осознанного начала утра.",
           price: "$ --",
-          tastingNote: "Какао • Чёрная вишня • Меласса",
+          tastingNote: "Какао / Черная вишня / Меласса",
         },
         {
           name: "Daily Ritual Roast",
           description:
-            "Тёплая, сбалансированная обжарка с карамельной глубиной и шелковистым финишем.",
+            "Теплая, сбалансированная обжарка с карамельной глубиной и шелковистым финишем.",
           price: "$ --",
-          tastingNote: "Тофи • Фундук • Красное яблоко",
+          tastingNote: "Тофи / Фундук / Красное яблоко",
         },
         {
           name: "Midnight Arabica",
           description:
             "Бархатная текстура с цветочным акцентом и пряной сладостью для долгих вечерних бесед.",
           price: "$ --",
-          tastingNote: "Жасмин • Слива • Пряный мёд",
+          tastingNote: "Жасмин / Слива / Пряный мед",
         },
       ],
     },
@@ -425,8 +433,8 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         "Кинематографичная история о медленных утраx, ремесленной обжарке и культуре совместного кофе в Ереване.",
       location: "Ереван, Армения",
       paragraphs: [
-        "В Ереване кофе не терпит спешки. Всё начинается с аромата до рассвета, тихого огня и точного пролива, превращающего привычку в ритуал.",
-        "В COFFEE TIME YEREVAN каждое зерно отбирается за характер, обжаривается ради глубины и готовится для тепла, которое остаётся после последнего глотка.",
+        "В Ереване кофе не терпит спешки. Все начинается с аромата до рассвета, тихого огня и точного пролива, превращающего привычку в ритуал.",
+        "В COFFEE TIME каждое зерно отбирается за характер, обжаривается ради глубины и готовится для тепла, которое остается после последнего глотка.",
         "От общих столов до спокойных домашних утр — наше ремесло чтит кофейную культуру города: элегантную, щедрую и объединяющую людей.",
       ],
     },
@@ -435,7 +443,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
       title: "Создано Для Премиальных Ежедневных Кофейных Моментов",
       items: [
         {
-          title: "Тщательно Отобранные Зёрна",
+          title: "Тщательно Отобранные Зерна",
           description:
             "Сезонные лоты с выразительным происхождением, чистой структурой и ярким ароматом.",
         },
@@ -458,13 +466,13 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     },
     instagram: {
       eyebrow: "Instagram Витрина",
-      title: "Визуальные Ритуалы COFFEE TIME YEREVAN",
+      title: "Визуальные Ритуалы COFFEE TIME",
       description:
-        "Кураторская визуальная лента, вдохновлённая нашей тёплой кофейной культурой и ремесленными моментами.",
+        "Кураторская визуальная лента, вдохновленная теплой кофейной культурой и ремесленными моментами.",
       shots: [
         {
           title: "Утренний Пролив",
-          caption: "Первый свет, тёплая чашка, тихий город.",
+          caption: "Первый свет, теплая чашка, тихий город.",
           toneClassName: toneClasses[0],
         },
         {
@@ -489,7 +497,7 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
         },
         {
           title: "Вечерний Кофе",
-          caption: "Медленные вечера, бархатное тело, тёплое сияние.",
+          caption: "Медленные вечера, бархатное тело, теплое сияние.",
           toneClassName: toneClasses[5],
         },
       ],
@@ -497,11 +505,11 @@ export const siteContent: Record<LanguageCode, SiteContent> = {
     finalCta: {
       title: "Принесите Ритуал Домой",
       subtitle:
-        "Премиальный кофе, созданный для тёплых моментов и незабываемых утр.",
+        "Премиальный кофе, созданный для теплых моментов и незабываемых утр.",
     },
     footer: {
       description:
-        "Премиальные обжаренные зёрна, эспрессо, инструменты для заваривания и ремесленный кофейный опыт в Ереване.",
+        "Премиальные обжаренные зерна, эспрессо, инструменты для заваривания и ремесленный кофейный опыт в Ереване.",
       rights: "Все права защищены.",
     },
   },

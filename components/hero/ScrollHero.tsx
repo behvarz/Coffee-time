@@ -28,13 +28,10 @@ export default function ScrollHero() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    const smallViewport = window.innerWidth < 1024;
     const memory = (navigator as NavigatorWithMemory).deviceMemory;
-    const constrainedMemory = typeof memory === "number" && memory <= 4;
+    const constrainedMemory = typeof memory === "number" && memory <= 3;
 
-    const shouldUseFallback =
-      prefersReducedMotion || coarsePointer || smallViewport || constrainedMemory;
+    const shouldUseFallback = prefersReducedMotion || constrainedMemory;
 
     setFallbackMode(shouldUseFallback);
 
@@ -78,6 +75,8 @@ export default function ScrollHero() {
 
       const maxTime = Math.max(video.duration - 0.06, 0);
       const smoothFactor = 0.18;
+      const holdRatio = 1 / 6;
+      const holdStart = 1 - holdRatio;
 
       const tick = () => {
         state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
@@ -104,7 +103,10 @@ export default function ScrollHero() {
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
           setProgress(nextProgress);
-          state.targetTime = nextProgress * maxTime;
+
+          const mappedProgress =
+            nextProgress < holdStart ? nextProgress / holdStart : 1;
+          state.targetTime = mappedProgress * maxTime;
         },
       });
 
@@ -159,6 +161,7 @@ export default function ScrollHero() {
           src="/hero.mp4"
           muted
           playsInline
+          autoPlay={fallbackMode}
           preload="auto"
         />
 

@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto grid w-full max-w-[1320px] gap-10 px-6 py-14 md:grid-cols-2 md:px-10 lg:px-16">
         <div>
           <p className="font-display text-2xl tracking-[0.18em] text-[#FFF7ED] uppercase">
-            Coffee Time Yerevan
+            Coffee Time
           </p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#F4E7D3]/70">
             {content.footer.description}
@@ -36,7 +36,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-[#E0A85A]/10 py-6 text-center text-xs tracking-[0.16em] text-[#F4E7D3]/55 uppercase">
-        © {new Date().getFullYear()} COFFEE TIME YEREVAN. {content.footer.rights}
+        © {new Date().getFullYear()} COFFEE TIME. {content.footer.rights}
       </div>
     </footer>
   );
