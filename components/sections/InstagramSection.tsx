@@ -21,7 +21,7 @@ export default function InstagramSection() {
   return (
     <section className="relative py-28 md:py-36">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-x-0 top-10 mx-auto h-[320px] max-w-[1320px] opacity-15">
+        <div className="absolute inset-x-0 top-10 mx-auto h-[320px] max-w-[1320px] opacity-10">
           <Image
             src="/images/ig-4.png"
             alt=""
@@ -29,7 +29,7 @@ export default function InstagramSection() {
             sizes="100vw"
             className="object-cover blur-[2px]"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.2)_0%,rgba(18,11,8,0.95)_85%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.12)_0%,rgba(18,11,8,0.8)_85%)]" />
         </div>
       </div>
 
@@ -68,13 +68,13 @@ export default function InstagramSection() {
                   alt={shot.title}
                   fill
                   sizes="(max-width: 1024px) 50vw, 33vw"
-                  className="object-cover opacity-58 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-68"
+                  className="object-cover opacity-72 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-82"
                 />
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${shot.toneClassName} opacity-55`}
+                  className={`absolute inset-0 bg-gradient-to-br ${shot.toneClassName} opacity-32`}
                 />
               </div>
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(18,11,8,0.92)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(18,11,8,0.68)_100%)]" />
               <div className="absolute right-4 bottom-4 left-4">
                 <h3 className="font-display text-2xl text-[#FFF7ED]">{shot.title}</h3>
                 <p className="mt-1 text-xs tracking-[0.12em] text-[#F4E7D3]/80 uppercase">
