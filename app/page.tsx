@@ -33,7 +33,7 @@ const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"), {
 
 export default function Home() {
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative">
       <Navbar />
 
       <main>
