@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import ProductCard from "@/components/cards/ProductCard";
 import SectionHeading from "@/components/sections/SectionHeading";
-import { collectionProducts } from "@/lib/site-content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function CollectionSection() {
+  const { content } = useLanguage();
+
   return (
     <section id="collection" className="relative py-28 md:py-36">
       <div className="mx-auto w-full max-w-[1320px] px-6 md:px-10 lg:px-16">
@@ -16,16 +18,16 @@ export default function CollectionSection() {
           transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
         >
           <SectionHeading
-            eyebrow="Collection"
-            title="Signature Roasts For Refined Coffee Rituals"
-            description="A curated line of premium coffee crafted for layered aroma, velvet texture, and unforgettable character."
+            eyebrow={content.collection.eyebrow}
+            title={content.collection.title}
+            description={content.collection.description}
           />
         </motion.div>
 
         <div className="luxury-divider mt-12" />
 
         <div className="mt-12 grid gap-7 lg:grid-cols-3">
-          {collectionProducts.map((product, index) => (
+          {content.collection.products.map((product, index) => (
             <ProductCard key={product.name} product={product} index={index} />
           ))}
         </div>

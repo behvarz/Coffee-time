@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { heroMoments } from "@/lib/site-content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type HeroOverlayTextProps = {
   progress: number;
@@ -28,10 +30,12 @@ export default function HeroOverlayText({
   progress,
   isReady,
 }: HeroOverlayTextProps) {
+  const { content } = useLanguage();
+
   return (
     <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
       <div className="mx-auto flex w-full max-w-[1060px] flex-col items-center text-center">
-        {heroMoments.map((moment) => (
+        {content.hero.moments.map((moment) => (
           <p
             key={moment.text}
             className="absolute max-w-3xl text-4xl leading-tight tracking-[0.06em] text-[#FFF7ED] md:text-6xl lg:text-7xl font-display"
@@ -51,13 +55,13 @@ export default function HeroOverlayText({
           }}
         >
           <span className="font-display text-xl tracking-[0.14em] text-[#F4E7D3] uppercase md:text-2xl">
-            Explore the Collection
+            {content.hero.exploreCollection}
           </span>
           <Link
             href="#collection"
             className="pointer-events-auto inline-flex rounded-full border border-[#E0A85A]/50 px-6 py-3 text-xs tracking-[0.24em] text-[#FFF7ED] uppercase hover:border-[#E0A85A] hover:bg-[#C88A3D]/15"
           >
-            Enter
+            {content.actions.enter}
           </Link>
         </div>
       </div>

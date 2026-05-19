@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Footer() {
+  const { content } = useLanguage();
+
   return (
     <footer className="border-t border-[#E0A85A]/14 bg-[#120B08]/90">
       <div className="mx-auto grid w-full max-w-[1320px] gap-10 px-6 py-14 md:grid-cols-2 md:px-10 lg:px-16">
@@ -9,8 +14,7 @@ export default function Footer() {
             Coffee Time Yerevan
           </p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#F4E7D3]/70">
-            Premium roasted coffee beans, espresso, brewing tools, and artisan coffee
-            experience in Yerevan.
+            {content.footer.description}
           </p>
         </div>
 
@@ -32,7 +36,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-[#E0A85A]/10 py-6 text-center text-xs tracking-[0.16em] text-[#F4E7D3]/55 uppercase">
-        © {new Date().getFullYear()} COFFEE TIME YEREVAN. All rights reserved.
+        © {new Date().getFullYear()} COFFEE TIME YEREVAN. {content.footer.rights}
       </div>
     </footer>
   );

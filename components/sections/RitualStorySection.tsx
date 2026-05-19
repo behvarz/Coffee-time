@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/sections/SectionHeading";
-import { ritualStoryParagraphs } from "@/lib/site-content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function RitualStorySection() {
+  const { content } = useLanguage();
+
   return (
     <section id="ritual" className="relative py-28 md:py-40">
       <div className="mx-auto grid w-full max-w-[1320px] gap-12 px-6 md:px-10 lg:grid-cols-12 lg:px-16">
@@ -16,9 +18,9 @@ export default function RitualStorySection() {
           transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
         >
           <SectionHeading
-            eyebrow="Coffee Ritual"
-            title="Where Aroma Becomes Memory"
-            description="A cinematic tribute to slow mornings, artisan craftsmanship, and shared coffee culture in Yerevan."
+            eyebrow={content.ritual.eyebrow}
+            title={content.ritual.title}
+            description={content.ritual.description}
           />
         </motion.div>
 
@@ -31,11 +33,11 @@ export default function RitualStorySection() {
         >
           <div className="rounded-[2rem] border border-[#E0A85A]/18 bg-[linear-gradient(160deg,rgba(42,24,16,0.88),rgba(18,11,8,0.95))] p-8 md:p-12">
             <div className="absolute -top-5 right-9 hidden rounded-full border border-[#E0A85A]/45 bg-[#120B08]/85 px-5 py-2 text-[10px] tracking-[0.22em] text-[#E0A85A] uppercase md:block">
-              Yerevan, Armenia
+              {content.ritual.location}
             </div>
 
             <div className="space-y-7">
-              {ritualStoryParagraphs.map((paragraph) => (
+              {content.ritual.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
                   className="text-lg leading-relaxed text-[#F4E7D3]/80 md:text-xl md:leading-relaxed"

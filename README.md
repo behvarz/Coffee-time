@@ -7,6 +7,7 @@ Premium cinematic coffee brand website built with:
 - Tailwind CSS 4
 - GSAP + ScrollTrigger
 - Framer Motion
+- Armenian (default) + English + Russian UI
 
 ## Setup
 
@@ -20,6 +21,13 @@ npm install
 
 ```text
 /public/hero.mp4
+```
+
+For smoother scroll scrubbing, use an H.264 MP4 with frequent keyframes.
+Example FFmpeg command:
+
+```bash
+ffmpeg -i hero-source.mp4 -c:v libx264 -preset slow -crf 20 -movflags +faststart -x264-params keyint=15:min-keyint=15:scenecut=0 -an public/hero.mp4
 ```
 
 3. Start local development:

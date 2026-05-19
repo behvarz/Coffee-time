@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/sections/SectionHeading";
-import { experienceItems } from "@/lib/site-content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function ExperienceSection() {
+  const { content } = useLanguage();
+
   return (
     <section className="relative py-28 md:py-36">
       <div className="mx-auto w-full max-w-[1320px] px-6 md:px-10 lg:px-16">
@@ -15,14 +17,14 @@ export default function ExperienceSection() {
           transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
         >
           <SectionHeading
-            eyebrow="Experience"
-            title="Built For Premium Daily Coffee Moments"
+            eyebrow={content.experience.eyebrow}
+            title={content.experience.title}
             align="center"
           />
         </motion.div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {experienceItems.map((item, index) => (
+          {content.experience.items.map((item, index) => (
             <motion.article
               key={item.title}
               initial={{ opacity: 0, y: 20 }}

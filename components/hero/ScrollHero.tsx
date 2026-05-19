@@ -41,6 +41,7 @@ export default function ScrollHero() {
     let updateTween: gsap.core.Tween | null = null;
     let scrubTrigger: ScrollTrigger | null = null;
     let autoplayInitiated = false;
+    let animationFrameId = 0;
 
     const autoplayVideo = () => {
       if (autoplayInitiated) {
@@ -66,8 +67,9 @@ export default function ScrollHero() {
         return;
       }
 
-      const target = {
-        time: 0,
+      const state = {
+        targetTime: 0,
+        smoothTime: 0,
       };
 
       video.pause();
@@ -75,39 +77,49 @@ export default function ScrollHero() {
       video.currentTime = 0;
 
       const maxTime = Math.max(video.duration - 0.06, 0);
+      const smoothFactor = 0.18;
 
-      updateTween = gsap.to(target, {
-        time: maxTime,
-        ease: "none",
-        paused: true,
-        onUpdate: () => {
-          if (video.readyState >= 2) {
-            const nextTime = Math.min(maxTime, target.time);
-            if (Math.abs(video.currentTime - nextTime) > 0.01) {
-              video.currentTime = nextTime;
-            }
+      const tick = () => {
+        state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
+
+        if (video.readyState >= 2) {
+          const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
+
+          if (Math.abs(video.currentTime - nextTime) > 0.008) {
+            video.currentTime = nextTime;
           }
-        },
-      });
+        }
+
+        animationFrameId = window.requestAnimationFrame(tick);
+      };
+
+      animationFrameId = window.requestAnimationFrame(tick);
 
       scrubTrigger = ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.9,
+        scrub: 0.4,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
           setProgress(nextProgress);
-          if (updateTween) {
-            updateTween.progress(nextProgress);
-          }
+          state.targetTime = nextProgress * maxTime;
         },
+      });
+
+      updateTween = gsap.to(video, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
       });
     };
 
     const onLoadedMetadata = () => {
       setIsReady(true);
+      video.preload = "auto";
+      void video.play().then(() => video.pause()).catch(() => null);
+
       if (shouldUseFallback) {
         autoplayVideo();
       } else {
@@ -132,6 +144,7 @@ export default function ScrollHero() {
     return () => {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      window.cancelAnimationFrame(animationFrameId);
       updateTween?.kill();
       scrubTrigger?.kill();
     };
@@ -146,7 +159,7 @@ export default function ScrollHero() {
           src="/hero.mp4"
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,11,8,0.35)_0%,rgba(18,11,8,0.08)_35%,rgba(18,11,8,0.78)_100%)]" />

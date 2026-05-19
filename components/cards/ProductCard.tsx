@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/site-content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type ProductCardProps = {
   product: Product;
@@ -9,6 +10,8 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product, index }: ProductCardProps) {
+  const { content } = useLanguage();
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 36 }}
@@ -34,7 +37,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       </div>
 
       <div className="mt-8 flex items-center justify-between">
-        <span className="text-sm tracking-[0.2em] text-[#F4E7D3]/75 uppercase">From</span>
+        <span className="text-sm tracking-[0.2em] text-[#F4E7D3]/75 uppercase">
+          {content.actions.from}
+        </span>
         <span className="font-display text-3xl text-[#E0A85A]">{product.price}</span>
       </div>
     </motion.article>
