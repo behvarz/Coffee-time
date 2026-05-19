@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --bg-deep: #120b08;
+  --espresso: #2a1810;
+  --coffee-brown: #5c341d;
+  --caramel-gold: #c88a3d;
+  --cream: #f4e7d3;
+  --gold-glow: #e0a85a;
+  --text-primary: #fff7ed;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-body: var(--font-inter);
+  --font-display: var(--font-cormorant);
+}
+
+body {
+  background:
+    radial-gradient(circle at 10% 20%, rgb(92 52 29 / 30%), transparent 40%),
+    radial-gradient(circle at 88% 10%, rgb(200 138 61 / 15%), transparent 35%),
+    radial-gradient(circle at 60% 78%, rgb(224 168 90 / 10%), transparent 42%),
+    var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: var(--bg-deep);
+  background: rgb(224 168 90 / 90%);
+}
+
+a,
+button {
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease,
+    opacity 250ms ease;
+}
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: soft-light;
+  background-image: radial-gradient(rgb(255 247 237 / 25%) 0.6px, transparent 0.6px);
+  background-size: 2px 2px;
+}
+
+.gold-glow {
+  box-shadow:
+    0 0 0 1px rgb(224 168 90 / 35%),
+    0 12px 35px rgb(42 24 16 / 45%),
+    0 0 42px rgb(224 168 90 / 16%);
+}
+
+.luxury-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(224 168 90 / 50%),
+    transparent
+  );
+}

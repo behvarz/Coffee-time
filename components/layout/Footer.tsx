@@ -1,0 +1,39 @@
+import Link from "next/link";
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-[#E0A85A]/14 bg-[#120B08]/90">
+      <div className="mx-auto grid w-full max-w-[1320px] gap-10 px-6 py-14 md:grid-cols-2 md:px-10 lg:px-16">
+        <div>
+          <p className="font-display text-2xl tracking-[0.18em] text-[#FFF7ED] uppercase">
+            Coffee Time Yerevan
+          </p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#F4E7D3]/70">
+            Premium roasted coffee beans, espresso, brewing tools, and artisan coffee
+            experience in Yerevan.
+          </p>
+        </div>
+
+        <div className="grid gap-5 text-sm text-[#F4E7D3]/78 md:justify-end md:text-right">
+          <Link
+            href="https://www.instagram.com/coffeetimeyerevan"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#E0A85A]"
+          >
+            instagram.com/coffeetimeyerevan
+          </Link>
+          <div>
+            <p>+37496536006</p>
+            <p>+37433536006</p>
+          </div>
+          <p>Antarayin 64/3, Yerevan</p>
+        </div>
+      </div>
+
+      <div className="border-t border-[#E0A85A]/10 py-6 text-center text-xs tracking-[0.16em] text-[#F4E7D3]/55 uppercase">
+        © {new Date().getFullYear()} COFFEE TIME YEREVAN. All rights reserved.
+      </div>
+    </footer>
+  );
+}
