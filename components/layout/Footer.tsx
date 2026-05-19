@@ -31,12 +31,23 @@ export default function Footer() {
             <p>+37496536006</p>
             <p>+37433536006</p>
           </div>
-          <p>Antarayin 64/3, Yerevan</p>
+          <p>Sundukyan 64/3, Yerevan</p>
         </div>
       </div>
 
       <div className="border-t border-[#E0A85A]/10 py-6 text-center text-xs tracking-[0.16em] text-[#F4E7D3]/55 uppercase">
-        © {new Date().getFullYear()} COFFEE TIME. {content.footer.rights}
+        (c) {new Date().getFullYear()} COFFEE TIME. {content.footer.rights}
+      </div>
+      <div className="pb-8 text-center text-xs tracking-[0.16em] text-[#F4E7D3]/55">
+        Powered by{" "}
+        <Link
+          href="https://orscale.com"
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#E0A85A] hover:text-[#F4E7D3]"
+        >
+          Orscale
+        </Link>
       </div>
     </footer>
   );

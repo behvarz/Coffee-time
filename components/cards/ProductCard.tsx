@@ -11,9 +11,9 @@ type ProductCardProps = {
 };
 
 const productVisuals = [
-  { image: "/images/product-signature.jpg", price: "$ 18.90" },
-  { image: "/images/product-daily.jpg", price: "$ 16.50" },
-  { image: "/images/product-midnight.jpg", price: "$ 21.40" },
+  { image: "/images/product-signature.png", price: "$ 18.90" },
+  { image: "/images/product-daily.png", price: "$ 16.50" },
+  { image: "/images/product-midnight.png", price: "$ 21.40" },
 ];
 
 export default function ProductCard({ product, index }: ProductCardProps) {

@@ -14,7 +14,7 @@ export default function CollectionSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-24 right-[-8rem] h-[430px] w-[430px] opacity-18">
           <Image
-            src="/images/product-midnight.jpg"
+            src="/images/product-midnight.png"
             alt=""
             fill
             sizes="430px"

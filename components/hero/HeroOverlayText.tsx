@@ -78,7 +78,7 @@ export default function HeroOverlayText({
           className="absolute flex flex-col items-center gap-2 md:bottom-10"
           style={{
             opacity: isReady ? hintOpacity : 0,
-            bottom: "calc(env(safe-area-inset-bottom, 0px) + 5.5rem)",
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 8rem)",
           }}
         >
           <span className="text-[11px] tracking-[0.18em] text-[#F4E7D3]/86 uppercase">

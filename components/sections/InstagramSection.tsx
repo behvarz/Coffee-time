@@ -7,12 +7,12 @@ import SectionHeading from "@/components/sections/SectionHeading";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const instagramImages = [
-  "/images/ig-1.jpg",
-  "/images/ig-2.jpg",
-  "/images/ig-3.jpg",
-  "/images/ig-4.jpg",
-  "/images/ig-5.jpg",
-  "/images/ig-6.jpg",
+  "/images/ig-1.png",
+  "/images/ig-2.png",
+  "/images/ig-3.png",
+  "/images/ig-4.png",
+  "/images/ig-5.png",
+  "/images/ig-6.png",
 ];
 
 export default function InstagramSection() {
@@ -23,7 +23,7 @@ export default function InstagramSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-x-0 top-10 mx-auto h-[320px] max-w-[1320px] opacity-15">
           <Image
-            src="/images/ig-4.jpg"
+            src="/images/ig-4.png"
             alt=""
             fill
             sizes="100vw"

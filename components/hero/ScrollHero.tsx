@@ -48,7 +48,7 @@ export default function ScrollHero() {
     let animationFrameId = 0;
 
     const autoplayVideo = () => {
-      if (autoplayInitiated) {
+      if (autoplayInitiated && !video.paused) {
         return;
       }
 
@@ -148,11 +148,11 @@ export default function ScrollHero() {
     const onLoadedMetadata = () => {
       setIsReady(true);
       video.preload = "auto";
-      void video.play().then(() => video.pause()).catch(() => null);
 
       if (shouldUseFallback) {
         autoplayVideo();
       } else {
+        void video.play().then(() => video.pause()).catch(() => null);
         setupScrub();
       }
     };
@@ -169,11 +169,35 @@ export default function ScrollHero() {
       }
     };
 
+    const onCanPlay = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    const onFirstInteraction = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
     document.addEventListener("visibilitychange", onVisibilityChange);
+    video.addEventListener("canplay", onCanPlay);
+    window.addEventListener("touchstart", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("pointerdown", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
 
     return () => {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("canplay", onCanPlay);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("pointerdown", onFirstInteraction);
       window.cancelAnimationFrame(animationFrameId);
       updateTween?.kill();
       scrubTrigger?.kill();
@@ -189,7 +213,8 @@ export default function ScrollHero() {
           src="/hero.mp4"
           muted
           playsInline
-          autoPlay={fallbackMode}
+          autoPlay
+          loop
           preload="auto"
         />
 
