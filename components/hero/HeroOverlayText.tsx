@@ -58,7 +58,7 @@ export default function HeroOverlayText({
         })}
 
         <div
-          className="absolute top-1/2 left-1/2 flex w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-5 px-6"
+          className="absolute top-[58%] left-1/2 flex w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-5 px-6"
           style={{
             opacity: ctaOpacity,
           }}
