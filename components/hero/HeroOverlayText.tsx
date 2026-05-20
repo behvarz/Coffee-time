@@ -63,12 +63,12 @@ export default function HeroOverlayText({
             opacity: ctaOpacity,
           }}
         >
-          <span className="font-display text-xl tracking-[0.14em] text-[#F4E7D3] uppercase md:text-2xl">
+          <span className="font-display text-xl tracking-[0.14em] text-[#2A1810] uppercase md:text-2xl">
             {content.hero.exploreCollection}
           </span>
           <Link
             href="#collection"
-            className="pointer-events-auto inline-flex rounded-full border border-[#E0A85A]/50 px-6 py-3 text-xs tracking-[0.24em] text-[#FFF7ED] uppercase hover:border-[#E0A85A] hover:bg-[#C88A3D]/15"
+            className="pointer-events-auto inline-flex rounded-full border border-[#E0A85A]/50 px-6 py-3 text-xs tracking-[0.24em] text-[#2A1810] uppercase hover:border-[#E0A85A] hover:bg-[#C88A3D]/15"
           >
             {content.actions.enter}
           </Link>
